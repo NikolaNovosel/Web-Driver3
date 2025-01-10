@@ -45,15 +45,15 @@ public class CloudGooglePage
     {
         for (int i = 0; i < 3; i++)
         {
-            NumberOfInstances.Click();
+            driver.ExecuteJavaScript("arguments[0].click()", NumberOfInstances);
         }
     }
     public void ClickOperatingSystem() => driver.ExecuteJavaScript("arguments[0].click()", OperatingSystem);
     public void ClickOperatingSystemUbuntu() => driver.ExecuteJavaScript("arguments[0].click()", OperatingSystemUbuntu);
-    public void ClickProvisioningModel() => ProvisioningModel.Click();
+    public void ClickProvisioningModel() => driver.ExecuteJavaScript("arguments[0].click()", ProvisioningModel);
     public void ClickMachineType() => driver.ExecuteJavaScript("arguments[0].click()", MachineType);
     public void ClickMachineTypeN1() => driver.ExecuteJavaScript("arguments[0].click()", MachineTypeN1);
-    public void ClickAddGPU() => AddGpus.Click();
+    public void ClickAddGPU() => driver.ExecuteJavaScript("arguments[0].click()", AddGpus);
     public void ClickGPUModel() => driver.ExecuteJavaScript("arguments[0].click()", GPUModel);
     public void ClickGPUModelV100() => driver.ExecuteJavaScript("arguments[0].click()", GPUModelV100);
     public void ClickNumberOfGPU() => driver.ExecuteJavaScript("arguments[0].click()", NumberOfGPU);

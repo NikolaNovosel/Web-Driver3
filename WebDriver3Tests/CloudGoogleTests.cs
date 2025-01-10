@@ -32,13 +32,14 @@ public class Tests
     {
         //Act
         cloudGooglePage.ClickAddToEstimate();
+        cloudGooglePage.Pause();
         cloudGooglePage.ClickComputeEngine();
         cloudGooglePage.ClickNumberOfInstances();
         cloudGooglePage.Pause();
         cloudGooglePage.ClickOperatingSystem();
         cloudGooglePage.ClickOperatingSystemUbuntu();
-        cloudGooglePage.Pause();
         cloudGooglePage.ClickProvisioningModel();
+        cloudGooglePage.Pause();
         cloudGooglePage.ClickMachineType();
         cloudGooglePage.ClickMachineTypeN1();
         cloudGooglePage.ClickAddGPU();
