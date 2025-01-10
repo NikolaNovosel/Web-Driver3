@@ -1,7 +1,5 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Edge;
-using OpenQA.Selenium.Firefox;
 using WebDriver3;
 
 namespace WebDriver3Tests;
@@ -28,7 +26,7 @@ public class Tests
     [TestCase("Number of GPUs8")]
     [TestCase("2x375 GB")]
     [TestCase("Taiwan (asia-east1)")]
-    public void TestComputeEngine(string machineType)
+    public void TestComputeEngine(string expectedResult)
     {
         //Act
         cloudGooglePage.ClickAddToEstimate();
@@ -62,9 +60,9 @@ public class Tests
 
         //Assert
         string Clean(string input) => input.Replace("\r", "").Replace("\n", "").Replace("\t", "").Trim();
-        string machineTypeText = cloudGooglePage.ReturnResultMachineType();
-        string cleanedActual = Clean(machineTypeText);
-        Assert.That(cleanedActual, Does.Contain(machineType));
+        string actualResult = cloudGooglePage.ReturnResult();
+        string cleanedActual = Clean(actualResult);
+        Assert.That(cleanedActual, Does.Contain(expectedResult));
     }
 
     [TearDown]

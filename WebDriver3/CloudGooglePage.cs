@@ -4,13 +4,11 @@ using OpenQA.Selenium.Support.Extensions;
 using OpenQA.Selenium.Support.UI;
 
 namespace WebDriver3;
-
 public class CloudGooglePage
 {
     private readonly IWebDriver driver;
     private readonly WebDriverWait wait;
     private readonly Actions actions;
-
     public CloudGooglePage(IWebDriver driver)
     {
         this.driver = driver;
@@ -38,7 +36,7 @@ public class CloudGooglePage
     private IWebElement RegionTaiwan => wait.Until(driver => driver.FindElement(By.XPath("//div[@class='U4lDT']/div[28]//span[text()='Taiwan (asia-east1)']")));
     private IWebElement Share => wait.Until(driver => driver.FindElement(By.XPath("//span[@class='FOBRw-vQzf8d' and text()='Share']")));
     private IWebElement EstimateSummary => wait.Until(driver => driver.FindElement(By.XPath("//a[text()='Open estimate summary']")));
-    private IWebElement ResultMachineType => driver.FindElement(By.XPath("//c-wiz"));
+    private IWebElement Result => driver.FindElement(By.XPath("//c-wiz"));
     public void ClickAddToEstimate() => AddToEstimate.Click();
     public void ClickComputeEngine() => ComputeEngine.Click();
     public void ClickNumberOfInstances()
@@ -64,6 +62,6 @@ public class CloudGooglePage
     public void ClickRegionTaiwan() => driver.ExecuteJavaScript("arguments[0].click()", RegionTaiwan);
     public void ClickShare() => driver.ExecuteJavaScript("arguments[0].click()", Share);
     public void ClickEstimateSummary() => driver.ExecuteJavaScript("arguments[0].click()", EstimateSummary);
-    public string ReturnResultMachineType() => ResultMachineType.Text;
+    public string ReturnResult() => Result.Text;
     public void Pause() => actions.Pause(TimeSpan.FromMilliseconds(1000)).Perform();
 }
