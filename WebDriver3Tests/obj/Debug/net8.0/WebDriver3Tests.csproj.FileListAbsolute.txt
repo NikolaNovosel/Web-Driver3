@@ -106,3 +106,4 @@ C:\Users\DELL\source\repos\WebDriver3\WebDriver3Tests\obj\Debug\net8.0\refint\We
 C:\Users\DELL\source\repos\WebDriver3\WebDriver3Tests\obj\Debug\net8.0\WebDriver3Tests.pdb
 C:\Users\DELL\source\repos\WebDriver3\WebDriver3Tests\obj\Debug\net8.0\WebDriver3Tests.genruntimeconfig.cache
 C:\Users\DELL\source\repos\WebDriver3\WebDriver3Tests\obj\Debug\net8.0\ref\WebDriver3Tests.dll
+C:\Users\DELL\source\repos\WebDriver3\WebDriver3Tests\obj\Debug\net8.0\WebDriver3Tests.sourcelink.json

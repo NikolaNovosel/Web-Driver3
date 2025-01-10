@@ -13,3 +13,4 @@ C:\Users\DELL\source\repos\WebDriver3\WebDriver3\obj\Debug\net8.0\WebDriver3.dll
 C:\Users\DELL\source\repos\WebDriver3\WebDriver3\obj\Debug\net8.0\refint\WebDriver3.dll
 C:\Users\DELL\source\repos\WebDriver3\WebDriver3\obj\Debug\net8.0\WebDriver3.pdb
 C:\Users\DELL\source\repos\WebDriver3\WebDriver3\obj\Debug\net8.0\ref\WebDriver3.dll
+C:\Users\DELL\source\repos\WebDriver3\WebDriver3\obj\Debug\net8.0\WebDriver3.sourcelink.json

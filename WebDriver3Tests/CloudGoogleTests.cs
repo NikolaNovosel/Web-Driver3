@@ -1,56 +1,74 @@
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Firefox;
 using WebDriver3;
 
 namespace WebDriver3Tests;
 
 public class Tests
 {
-    private IWebDriver _driver;
-    private GoogleCloudCalculatorPage _calculatorPage;
-
-    private readonly string urlProductCalculator = "https://cloud.google.com/products/calculator/?hl=en";
-    private readonly string urlEstimatePreview = "https://cloud.google.com/products/calculator/estimate-preview/3c268451-c1b0-4993-8e31-89e44bc593e1";
+    private IWebDriver driver;
+    private CloudGooglePage cloudGooglePage;
+    private readonly string url = "https://cloud.google.com/products/calculator";
 
     [SetUp]
     public void SetUp()
     {
-        _driver = new EdgeDriver();
-        _driver.Manage().Window.Maximize();
-        _calculatorPage = new GoogleCloudCalculatorPage(_driver);
+        driver = new ChromeDriver();
+        driver.Manage().Window.Maximize();
+        driver.Navigate().GoToUrl(url);
+        cloudGooglePage = new CloudGooglePage(driver);
     }
 
-    [Test]
-    public void TestComputeEngine()
+    //Arange
+    [TestCase("Paid: Ubuntu Pro")]
+    [TestCase("n1-standard-1")]
+    [TestCase("NVIDIA V100")]
+    [TestCase("Number of GPUs8")]
+    [TestCase("2x375 GB")]
+    [TestCase("Taiwan (asia-east1)")]
+    public void TestComputeEngine(string machineType)
     {
-        _driver.Navigate().GoToUrl(urlProductCalculator);
-        _calculatorPage.ClickAddEstimate();
-        _calculatorPage.SelectComputeEngine();
-        _calculatorPage.FillForm();
-        _calculatorPage.ClickShare();
-        _calculatorPage.OpenEstimateSummary();
-    }
-    [Test]
-    public void TestEstimatePreview()
-    {
-        _driver.Navigate().GoToUrl(urlEstimatePreview);
+        //Act
+        cloudGooglePage.ClickAddToEstimate();
+        cloudGooglePage.ClickComputeEngine();
+        cloudGooglePage.ClickNumberOfInstances();
+        cloudGooglePage.Pause();
+        cloudGooglePage.ClickOperatingSystem();
+        cloudGooglePage.ClickOperatingSystemUbuntu();
+        cloudGooglePage.Pause();
+        cloudGooglePage.ClickProvisioningModel();
+        cloudGooglePage.ClickMachineType();
+        cloudGooglePage.ClickMachineTypeN1();
+        cloudGooglePage.ClickAddGPU();
+        cloudGooglePage.Pause();
+        cloudGooglePage.ClickGPUModel();
+        cloudGooglePage.ClickGPUModelV100();
+        cloudGooglePage.Pause();
+        cloudGooglePage.ClickNumberOfGPU();
+        cloudGooglePage.ClickNumberOfGPU8();
+        cloudGooglePage.Pause();
+        cloudGooglePage.ClickLocalSSD();
+        cloudGooglePage.ClickLocalSSD2();
+        cloudGooglePage.Pause();
+        cloudGooglePage.ClickRegion();
+        cloudGooglePage.ClickRegionTaiwan();
+        cloudGooglePage.Pause();
+        cloudGooglePage.ClickShare();
+        cloudGooglePage.ClickEstimateSummary();
+        cloudGooglePage.Pause();
 
-        string resultNumberOfInstances = _calculatorPage.ReturnNumberOfInstances();
-        string expectedNumberOfnIstances = "1";
-        Assert.That(expectedNumberOfnIstances, Is.EqualTo(resultNumberOfInstances));
-
-        string resultProvisioningModel = _calculatorPage.ReturnProvisioningModel();
-        string expectedProvisioningModel = "Regular";
-        Assert.That(expectedProvisioningModel, Is.EqualTo(resultProvisioningModel));
-
-        string resultAddGpus = _calculatorPage.ReturnAddGpus();
-        string expectedAddGpus = "false";
-        Assert.That(expectedAddGpus, Is.EqualTo(resultAddGpus));
+        //Assert
+        string Clean(string input) => input.Replace("\r", "").Replace("\n", "").Replace("\t", "").Trim();
+        string machineTypeText = cloudGooglePage.ReturnResultMachineType();
+        string cleanedActual = Clean(machineTypeText);
+        Assert.That(cleanedActual, Does.Contain(machineType));
     }
 
     [TearDown]
     public void TearDown()
     {
-        _driver.Dispose();
+        driver.Dispose();
     }
 }
